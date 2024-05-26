@@ -1,4 +1,4 @@
-import LayoutContainer from "../components/Layout"
+import AboutSection from "../sections/AboutSection"
 import AgentSection from "../sections/AgentSection"
 import TestimonialSection from "../sections/TestimonialSection"
 
@@ -6,9 +6,7 @@ import TestimonialSection from "../sections/TestimonialSection"
 const AboutPage = () => {
   return (
     <>
-      <LayoutContainer>
-      <h1>ABOUT SECTION</h1>
-      </LayoutContainer>
+      <AboutSection/>
     <AgentSection/>
       <TestimonialSection/>
     </>

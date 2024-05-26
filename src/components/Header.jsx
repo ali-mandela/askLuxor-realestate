@@ -133,9 +133,11 @@ const Header = () => {
                                 <p key={index}>{detail.icon} {detail.text}</p>
                             ))}
                         </div>
-                        {data[currentLink]?.price ? (
+                    <p>
+                    {data[currentLink]?.price ? (
     <Link to={data[currentLink]?.button?.path} className={styles.button}>{data[currentLink]?.button?.name}</Link>
 ) : null}
+                    </p>
 
                        </div>
                 </div>

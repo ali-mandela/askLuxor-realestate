@@ -1,7 +1,11 @@
+import LayoutContainer from "../components/Layout"
+
  
 const ContactPage = () => {
   return (
-    <div>ContactPage FORM</div>
+  <LayoutContainer>
+      <div>Contact form</div>
+  </LayoutContainer>
   )
 }
 
