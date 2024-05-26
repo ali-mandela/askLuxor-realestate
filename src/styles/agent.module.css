@@ -1,0 +1,81 @@
+.agentContainer{ 
+    padding: 60px 0;
+
+    .agentTop{
+        text-align: center;
+        padding: 60px 0;
+
+        & h1{
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+    }
+
+    .agentBody{
+        padding: 30px 0;
+        display: flex; 
+        justify-content: space-between;
+        flex-wrap: wrap;  
+
+    }
+
+}
+@media (max-width: 700px) {
+    .agentContainer {
+         padding: 40px 0;
+
+         .agentTop{
+            padding: 10px 0;
+         }
+         .agentBody{
+            padding: 60px 0;flex-direction: column;
+            align-items: center;
+            gap: 80px;
+         }
+        }
+    
+}
+
+
+/* Agent Component */
+
+.agentComponent{ 
+        align-content: center;
+    .imgContainer{
+        position: relative;
+
+        &> div{
+            bottom: 30px;
+            height: 240px;
+            left: -30px;
+            width: 260px;
+            position: absolute;
+            z-index:0;
+            border: solid 4px #91B029; 
+            
+        }
+
+        & img {
+            width: 260px;
+            height: 220px;
+            object-fit: cover;
+            z-index: 1;
+
+        }
+
+       
+        
+    }
+    .textContainer{
+        .name{
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .list{
+            & a{
+                color: #333;
+                font-size: 1.1rem;
+            }
+        }
+    }
+}

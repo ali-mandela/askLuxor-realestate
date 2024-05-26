@@ -1,0 +1,16 @@
+.layoutContainer {
+    padding: 10px 140px;
+    height: 100%;
+}
+
+@media (max-width: 900px) and (min-width: 700px) {
+    .layoutContainer {
+        padding: 10px 60px;
+    }
+}
+
+@media (max-width: 700px) {
+    .layoutContainer {
+        padding: 10px;
+    }
+}
