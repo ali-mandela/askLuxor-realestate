@@ -104,7 +104,7 @@ const Header = () => {
         <div
           className={styles.mobileMenu}
           style={{
-            right: mobile ? '-100px' : '-100vw',
+            right: mobile ? '-20px' : '-1000px',
           }}
         > 
           <ul>
