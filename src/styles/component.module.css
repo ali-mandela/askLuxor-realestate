@@ -25,8 +25,12 @@
             border: solid 1px grey;
 
         }
+        @media (max-width: 700px) {
+             
+           padding:0 10px;
 
     }
+}
 
     .seconfDiv {
         background-color: #91B029; 

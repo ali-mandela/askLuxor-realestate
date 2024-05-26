@@ -8,13 +8,25 @@ import bg from '../assets/headerBg.jpg';
 import bg1 from '../assets/dRs.jpg';
 import bg2 from '../assets/react.svg';
 import cv from '../assets/innerBG.png'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
+
+
 
 const Header = () => {
-    const [currentLink, setCurrentLink] = useState('Home');
+    const [currentLink, setCurrentLink] = useState('Home'); 
+    
 
     const handleSelectedLink = (item) => {
         setCurrentLink(item);
     };
+
+    const [mobile, setMobile] = useState(false);
+
+    const mobileToggle = () => {
+        setMobile(prevMobile => !prevMobile);
+      };
+
 
     const backgroundImages = {
         Home: bg,
@@ -66,7 +78,7 @@ const Header = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 height: '90vh',
-                width: '100vw'
+                width: '100%'
             }}
             className={styles.headerContainer}
         >
@@ -86,6 +98,17 @@ const Header = () => {
                             </li>
                         ))}
                     </ul>
+                    <div className={styles.mobile}>
+        {mobile ?  <IoClose onClick={mobileToggle} /> :<GiHamburgerMenu onClick={mobileToggle}/> }
+        <div
+          className={styles.mobileMenu}
+          style={{
+            right: mobile ? '-100px' : '-100vw',
+          }}
+        > 
+          <p>Hello</p>
+        </div>
+      </div>
                 </div>
                 <div className={styles.bodyContainer}>
                     <div className={styles.bodyContent}>
