@@ -108,7 +108,7 @@
     
 }
 
-@media (max-width: 900px) {
+@media (max-width: 700px) {
     .navBar{
         display: flex;
         justify-content: space-between;
@@ -126,21 +126,50 @@
         }
 
         .mobile{
-            display: block;
+            display: block; 
             position: relative; 
 
             & svg {
                 font-size: 4rem;
-                z-index: 99;
+                z-index: +1111;
+                position: absolute;
+                top: -20px;;
+                right: 10px;
             }
 
-            .mobileMenu{
+            .mobileMenu{ 
                 position: absolute;
-                top: -10px; 
+                top: -30px; 
+                right: -100px;
                 width: 99vw; 
                 height: 100vh;
-                background-color: whitesmoke;
-                transition: all .3 ease-in-out;
+                z-index: +11;
+                background-color: rgb(255, 255, 255);
+                transition: right .3 ease-in-out;
+
+                & ul{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 70px 30px;
+                    gap: 30px;
+
+                    .activeLL { 
+                            color: #91B029;
+                        
+                     }
+
+                    & li {
+                        font-size: 1.5rem; 
+
+                         & a{
+                            color: #000;
+                            
+                         }
+
+                         
+                        
+                    }
+                }
             }
         }
     

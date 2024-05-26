@@ -15,14 +15,15 @@ import { IoClose } from "react-icons/io5";
 
 const Header = () => {
     const [currentLink, setCurrentLink] = useState('Home'); 
-    
+    const [mobile, setMobile] = useState(false);
+
 
     const handleSelectedLink = (item) => {
+        setMobile(false);
         setCurrentLink(item);
     };
 
-    const [mobile, setMobile] = useState(false);
-
+    
     const mobileToggle = () => {
         setMobile(prevMobile => !prevMobile);
       };
@@ -106,7 +107,17 @@ const Header = () => {
             right: mobile ? '-100px' : '-100vw',
           }}
         > 
-          <p>Hello</p>
+          <ul>
+          {links.map(item => (
+                            <li
+                                key={item.id}
+                                onClick={() => handleSelectedLink(item.name)}
+                                
+                            >
+                               <Link className={currentLink === item.name ? styles.activeLL : ''} to={item.path}>{item.name}</Link>
+                            </li>
+                        ))}
+          </ul>
         </div>
       </div>
                 </div>
