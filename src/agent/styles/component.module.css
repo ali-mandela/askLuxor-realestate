@@ -1,0 +1,76 @@
+.navbarContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+
+    .menus{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        @media (max-width:800px) {
+            flex-direction: column;
+            display: none;   
+            
+        }
+
+        & li{
+            font-weight: 500;
+            font-size: 1rem;
+           
+            
+            & a{ color:#91B029; 
+            }
+        }
+    }
+}
+
+.TableContainer{
+    padding: 10px 0;
+
+ 
+  
+  .Table {
+    width: 100%;
+    border-collapse: collapse;
+    
+  } 
+  .Table th, .Table td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .Table th { 
+    font-weight: bold;background-color: #91B029;
+  }
+  
+  .Table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .Table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .Image {
+    max-width: 100px;
+    height: auto;
+    display: block;
+  }
+
+  .DeleteButton{
+    background-color: #F26531;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    display: flex;align-items: center;
+    gap: 4px;
+    color: #fff ;
+    transition: all .3s ease-in-out;
+
+    &:hover{
+        background-color: #FEBF14;
+    }
+  }
+  }

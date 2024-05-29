@@ -2,7 +2,7 @@
 import styles from '../styles/header.module.css';
 import LayoutContainer from './Layout';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { FaLocationPin } from 'react-icons/fa6';
 import bg from '../assets/headerBg.jpg';
 import bg1 from '../assets/dRs.jpg';
@@ -16,6 +16,7 @@ import { IoClose } from "react-icons/io5";
 const Header = () => {
     const [currentLink, setCurrentLink] = useState('Home'); 
     const [mobile, setMobile] = useState(false);
+    
 
 
     const handleSelectedLink = (item) => {

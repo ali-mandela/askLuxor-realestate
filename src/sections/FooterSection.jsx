@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const links = [
     { id: 0, name: "About us", path: "/about" },
-    { id: 1, name: "Testimonials", path: "/testimonials" },
+    { id: 1, name: "Agent portal", path: "/agent/register" },
     { id: 2, name: "Terms of service", path: "/terms" },
     { id: 3, name: "Privacy", path: "/privacy" },
     { id: 4, name: "Contact us", path: "/contact" }
