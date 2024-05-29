@@ -1,59 +1,40 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LayoutContainer from '../../components/Layout'
-import style from '../styles/component.module.css'
+import LayoutContainer from '../../components/Layout';
+import style from '../styles/component.module.css';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const AgentNavbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const isLoggenIn = true;
+  const links = [
+    { id: 1, name: "login", path: "/agent/login" },
+    { id: 2, name: "register", path: "/agent/register" },
+    { id: 3, name: "post a property", path: "/agent/post-a-property" },
+    { id: 4, name: "my properties", path: "/agent/my-properties" },
+    { id: 5, name: "profile", path: "/agent/profile" },
+    { id: 6, name: "logout", path: "/" },
+  ];
 
-    const links= !isLoggenIn ? [
-        {
-            id:1,
-            name:"login",
-            path:"/agent/login"
+  return (
+    <LayoutContainer>
+      <div className={style.navbarContainer}>
+        <h1>askLuxor</h1>
+        <div className={style.menuIcon} onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </div>
+        <ul className={`${style.menus} ${menuOpen ? style.menuOpen : ''}`}>
+          {links.map((i) =>
+            <li key={i.id}>
+              <Link to={i.path} onClick={() => setMenuOpen(false)}>
+                {i.name}
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
+    </LayoutContainer>
+  );
+};
 
-        },
-        {
-            id:2,
-            name:"register",
-            path:"/agent/register"
-
-        }
-    ] : [
-        {
-            id:1,
-            name:"post a property",
-            path:"/agent/post-a-property"
-        },
-        {
-            id:2,
-            name:"my proprties",
-            path:"/agent/my-properties"
-        },
-        {
-            id:3,
-            name:"Profile",
-            path:"/agent/profile"
-        },
-        {
-            id:4,
-            name:"Logout",
-            path:"/auth/login"
-        },
-
-    ]
-    return (
-        <LayoutContainer>
-            <div className={style.navbarContainer}>
-                <h1>askLuxor</h1> 
-                        <ul className={style.menus}>
-                            {
-                                links.map((i)=> <li key={i.id}><Link to={i.path}>{i.name}</Link></li>)
-                            }
-                        </ul> 
-            </div>
-        </LayoutContainer>
-    )
-}
-
-export default AgentNavbar
+export default AgentNavbar;

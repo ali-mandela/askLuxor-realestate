@@ -43,7 +43,10 @@ const Header = () => {
         { id: 1, name: "Agents", path: "/agents" },
         { id: 2, name: "Property", path: "/property" },
         { id: 3, name: "About", path: "/about" },
-        { id: 4, name: "Contact", path: "/contact" }
+        { id: 4, name: "Contact", path: "/contact" },
+        {
+            id:5, name:"Agents Portal",path: "/agent/register"
+        }
     ];
 
     const data = {
