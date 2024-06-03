@@ -1,0 +1,12 @@
+.profileContainer{
+    & h1{
+        text-align: center;
+    }
+
+    & div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+    }
+}

@@ -6,18 +6,25 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 
 const AgentNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+const user= 
+{
+  // role:"ADMIN",
+}
+const links = !localStorage.getItem('token') ? [
+  { id: 1, name: "login", path: "/agent/login" },
+  { id: 2, name: "register", path: "/agent/register" },
+] : user.role === "ADMIN" ? [
+  { id: 1, name: "Admin Dashboard", path: "/agent/admin/dashboard" },
+] : [
+  { id: 1, name: "post a property", path: "/agent/post-a-property" },
+  { id: 2, name: "my properties", path: "/agent/my-properties" },
+  { id: 3, name: "profile", path: "/agent/profile" },
+  // { id: 4, name: "logout", path: "/" },
+];
 
-  const links = [
-    { id: 1, name: "login", path: "/agent/login" },
-    { id: 2, name: "register", path: "/agent/register" },
-    { id: 3, name: "post a property", path: "/agent/post-a-property" },
-    { id: 4, name: "my properties", path: "/agent/my-properties" },
-    { id: 5, name: "profile", path: "/agent/profile" },
-    { id: 6, name: "logout", path: "/" },
-  ];
 
   return (
-    <LayoutContainer>
+    <LayoutContainer bgColor={"#91B029"}>
       <div className={style.navbarContainer}>
         <h1>askLuxor</h1>
         <div className={style.menuIcon} onClick={() => setMenuOpen(!menuOpen)}>
@@ -30,7 +37,11 @@ const AgentNavbar = () => {
                 {i.name}
               </Link>
             </li>
-          )}
+           
+          )} 
+          { localStorage.getItem('token')  && <li><Link onClick={()=> {
+            localStorage.clear();
+          }} to={'/'}>logout</Link></li>}
         </ul>
       </div>
     </LayoutContainer>

@@ -3,10 +3,24 @@ import { useCallback } from 'react';
 import style from '../styles/component.module.css';
 import { MdDelete } from "react-icons/md";
 import {Link} from 'react-router-dom'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const PropertyTable = ({ data }) => {
-  const handleDelete = useCallback((id) => {
-    console.log('Item deleted successfully!', id);
-  }, []);
+
+  console.log(data[0 ]);
+
+const handleDelete = useCallback(async (id) => {
+    try {
+        await axios.delete(`/property/delete-property/${id}`, {
+            headers: {
+                Authorization:  localStorage.getItem('token') 
+            }
+        }); 
+    } catch (err) {
+        console.error('Error deleting property:', err);
+        toast.error('Failed to delete property. Please try again later.');
+    }
+}, []);
 
   return (
     <div className={style.TableContainer}>
@@ -21,20 +35,19 @@ const PropertyTable = ({ data }) => {
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={item.id}>
+            <tr key={item._id}>
               <td>{index + 1}</td>
-              <td>{item.name}</td>
+              <td><Link to={`/agent/property/${item?._id}`}>{item.name}</Link></td>
               <td>
                 <img src={item.image} alt={item.name} className={style.Image} />
               </td>
               <td>
                 <button
                   className={style.DeleteButton}
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item._id)}
                 > Delete
                   <MdDelete />
-                </button>
-                <Link to={"/"}>Visit</Link>
+                </button> 
               </td>
             </tr>
           ))}

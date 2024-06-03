@@ -3,10 +3,14 @@ import LayoutContainer from '../../components/Layout';
 import img from '../../assets/auth.svg';
 
 import {useState} from 'react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
 
     const [formData,
         setFormData] = useState({email: '', password: ''});
+        const navigate = useNavigate()
 
     const handleChange = (e) => {
 
@@ -17,10 +21,36 @@ const LoginPage = () => {
 
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
+
+        const {email, password} = formData;
+        if (!email ||  !password   ) {
+            toast.error('Please fill in all fields.');
+            return;
+        }
+
+        try {
+            const {data} = await axios.post('/agent/login', {
+                email, password
+            })
+
+            if(data.success){
+                toast(data.message);
+                localStorage.setItem('token', data.token);
+                navigate('/agent/post-a-property')
+                setFormData({})
+
+            }else{
+                toast(data.message)
+            }
+ 
+            
+        } catch (error) {
+            console.error('Error during registration:', error);
+            toast.error('Login failed. Please try again.', error.message);
+            
+        }
     };
 
     return (

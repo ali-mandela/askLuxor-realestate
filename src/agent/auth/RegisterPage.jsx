@@ -1,65 +1,123 @@
-import {useRef, useState} from 'react';
+import { useRef, useState } from 'react';
 import style from '../styles/auth.module.css';
 import LayoutContainer from '../../components/Layout';
 import img from '../../assets/auth.svg';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-    const [formData,
-        setFormData] = useState({name: '', email: '', phone: '', password: '', image: null});
-        const ref = useRef();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        Phone: '',
+        password: '',
+        Image: null,
+        imagePreview: null 
+    });
+    const navigate = useNavigate()
 
-    const [imagePreview,
-        setImagePreview] = useState(null);
+    const ref = useRef();
 
     const handleChange = (e) => {
-        const {name, value, files} = e.target;
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleImageUpload = (e) => {
+        const { name, files } = e.target;
         if (name === 'image' && files.length > 0) {
             const file = files[0];
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFormData(prevState => ({
                     ...prevState,
-                    image: file
+                    Image: file,
+                    imagePreview: reader.result
                 }));
-                setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
-    };
+    
+        const { name, email, Phone, password, Image } = formData;
+    
+        // Check if any required field is empty
+        if (!name || !email || !Phone || !password || !Image ) {
+            toast.error('Please fill in all fields.');
+            return;
+        }
+    
+        try { 
+            const imageForm = new FormData();
+            imageForm.append('image', Image);
+            const { data } = await axios.post('/agent/upload', imageForm);
+            const imagePublicId = data.url; 
+    
+            const res = await axios.post('/agent/register', {
+                name, 
+                email,
+                Phone,
+                password,
+                Image: imagePublicId 
+            });
+            const response =await res.data;
 
+            if(response.success == true){
+                console.log(response);
+                toast(response.message);
+                localStorage.setItem('token', response.token);
+                navigate('/agent/post-a-property')
+                setFormData({})
+            }else{
+                toast(response.message)
+            }
+     
+        } catch (error) {
+            console.error('Error during registration:', error);
+            toast.error('Registration failed. Please try again.');
+        }
+    };
+    
     return (
-        <LayoutContainer bgColor={"#fff"}>
+        <LayoutContainer bgColor="#fff">
             <div className={style.registerContainer}>
                 <div className={style.imgContainer}>
-                    <img src={img} alt="left bg"/>
+                    <img src={img} alt="left bg" />
                 </div>
 
                 <div className={style.formContainer}>
                     <h1>Welcome to askLuxor</h1>
                     <h3>Partner register portal</h3>
                     <form onSubmit={handleSubmit}>
-                        <div className={style.formGroup}>  
-                            <img src={imagePreview ? imagePreview : 'https://placehold.co/100x100'} alt="Preview" onClick={() => ref.current.click()}/>
-                            <br/>
-                            <label>Upload your image</label>
-                            <input type='file' name='image'  ref={ref} hidden accept='.jpeg, .png, .jpg' onChange={handleChange}/>
-                    
+                        <div className={style.formGroup}>
+                            <img
+                                src={formData.imagePreview || 'https://placehold.co/100x100'}
+                                alt="Preview"
+                                onClick={() => ref.current.click()}
+                            />
+                            <br />
+                            <label>{formData !== null ? "Upload your image" : "image uploaded succesfully"}</label>
+                            <input
+                                type="file"
+                                name="image"
+                                ref={ref}
+                                hidden
+                                accept=".jpeg, .png, .jpg"
+                                onChange={handleImageUpload}
+                            />
                         </div>
                         <div className={style.formGroup}>
                             <input
                                 name="name"
                                 type='text'
+                                required
                                 placeholder="Enter your name"
                                 value={formData.name}
                                 onChange={handleChange}/>
@@ -68,32 +126,36 @@ const RegisterPage = () => {
                             <input
                                 name="email"
                                 type='email'
+                                required
                                 placeholder="Enter your email"
                                 value={formData.email}
                                 onChange={handleChange}/>
                         </div>
                         <div className={style.formGroup}>
                             <input
-                                name="phone"
+                                name="Phone"
                                 type='number'
-                                placeholder="Enter your phone"
-                                value={formData.phone}
+                                required
+                                placeholder="Enter your Phone"
+                                value={formData.Phone}
                                 onChange={handleChange}/>
                         </div>
                         <div className={style.formGroup}>
                             <input
                                 name="password"
+                                required
                                 type="password"
                                 placeholder="Enter your password"
                                 value={formData.password}
                                 onChange={handleChange}/>
                         </div>
+                        {/* Repeat similar blocks for other form fields */}
                         <button type="submit">Register</button>
                     </form>
                 </div>
             </div>
         </LayoutContainer>
     );
-}
+};
 
 export default RegisterPage;

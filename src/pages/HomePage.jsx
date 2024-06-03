@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
    
     <>  
-    <Filter/>
+    <Filter isNav={true}/>
     <About/>
     <ProperySection/>
       <AgentSection/>

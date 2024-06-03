@@ -1,9 +1,11 @@
  
-.mainFilter { 
+.mainFilter{ 
   position: relative;
 
-    .fisrtDiv { 
-        padding: 0 140px;
+    .firstDiv { 
+        padding: 0 140px; 
+        cursor: pointer;
+
         display: flex;
         background-color: transparent;
         position: absolute;
@@ -11,17 +13,20 @@
        
 
         .ac {
-            background-color: #fff;
-            color: #91B029;
+            background-color: #91B029;
+            color: white;
+
+
+            
         }
 
         & p {
             height: 40px;
             align-items: center;
             text-align: center;
-            background-color: #91B029;
+            background-color: #fff;
+            color: #91B029;
             padding: 10px;
-            color: white;
             border: solid 1px grey;
 
         }
@@ -32,7 +37,7 @@
     }
 }
 
-    .seconfDiv {
+    .secondDiv {
         background-color: #91B029; 
         padding: 40px 0;
         & form {
