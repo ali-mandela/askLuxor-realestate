@@ -16,7 +16,7 @@ const SectionLayout = ({
     const {backgroundColor, color,} = style;
 
     return (
-        <div
+        <section
             style={{
             backgroundColor,
             color
@@ -36,7 +36,7 @@ const SectionLayout = ({
             <div>
                 {children}
             </div>
-        </div>
+        </section>
     )
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from '../styles/header.module.css';
 import LayoutContainer from './Layout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, } from 'react-router-dom';
 import { FaLocationPin } from 'react-icons/fa6';
 import bg from '../assets/headerBg.jpg';
@@ -16,6 +16,9 @@ import { IoClose } from "react-icons/io5";
 const Header = () => {
     const [currentLink, setCurrentLink] = useState('Home'); 
     const [mobile, setMobile] = useState(false);
+    useEffect(() => {
+        document.title = `${currentLink} | askLuxor`;
+      }, [currentLink]);
     
 
 

@@ -1,18 +1,15 @@
-import { useEffect } from "react";
-import AboutSection from "../sections/AboutSection"
-import AgentSection from "../sections/AgentSection"
-import TestimonialSection from "../sections/TestimonialSection"
+import AboutSection from "../sections/AboutSection" 
+import TestimonialSection from "../sections/TestimonialSection" 
+import AboutLeaderSection from "../sections/AboutLeaderSection";
 
  
 const AboutPage = () => {
 
-  useEffect(() => {
-    document.title = 'About | askLuxor';
-  }, []);
+ 
   return (
     <>
       <AboutSection/>
-    <AgentSection/>
+      <AboutLeaderSection/>
       <TestimonialSection/>
     </>
   )
