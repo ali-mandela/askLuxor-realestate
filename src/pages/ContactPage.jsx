@@ -1,12 +1,8 @@
-import LayoutContainer from "../components/Layout"
+import ContactSection from "../sections/ContactSection"
 
- 
 const ContactPage = () => {
-  return (
-  <LayoutContainer>
-      <div>Contact form</div>
-  </LayoutContainer>
-  )
+
+    return (<ContactSection/>)
 }
 
 export default ContactPage

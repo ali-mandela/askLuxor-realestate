@@ -38,7 +38,7 @@ const FooterSection = () => {
                         <h4 className={style.footerTitle}>Subscribe</h4>
                         <ul>
                             {links.map((item) => (
-                               <li key={item.id}> <Link to={item.path} ><RiArrowRightSLine /> {item.name} </Link> </li>
+                               <li key={item.id}>  <Link to={item.path} target="_blank" ><RiArrowRightSLine /> {item.name} </Link> </li>
                             ))}
                         </ul>
                     </div>
