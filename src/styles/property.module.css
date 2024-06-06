@@ -47,8 +47,7 @@
 .PropertyComponent{
 
     background-color: #222222;
-    /* width: 340px; */
-    width: 100%;
+    width: 320px;
     display: inline-block;
     & img {
         width: 100%;

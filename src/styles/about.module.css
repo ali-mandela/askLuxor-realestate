@@ -23,16 +23,18 @@
         text-align: center;
         gap: 30px;
 
-        & h2{
-            font-weight: 300;
-        }
+       
 
         & a{
             background-color:   #91b029;
             color: white;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 6px;
-            font-size: 1.2rem;
+            transition: background-color .4s ease-in-out;
+
+            &:hover {
+                background-color: #779122 ; 
+            }
         }
 
     }

@@ -27,31 +27,4 @@
 }
  
 /* body */
-
-/* Pagonatoin buttons */
-
-.paginationContainer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.paginationContainer button {
-    margin: 0 5px;
-    padding: 10px 15px;
-    border: none;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 50%;
-}
-.paginationContainer button:hover {
-    background-color: #ddd;
-}
-
-.paginationContainer button.active {
-    background-color: #007bff;
-    color: white;
-}
+ 

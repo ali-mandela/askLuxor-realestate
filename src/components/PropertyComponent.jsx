@@ -5,6 +5,7 @@ import { IoBedSharp } from "react-icons/io5";
 import { FaBath } from "react-icons/fa";
 import { LuParkingSquare } from "react-icons/lu";
 import { LuParkingSquareOff } from "react-icons/lu";
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,7 +14,7 @@ import { LuParkingSquareOff } from "react-icons/lu";
 const PropertyComponent = ({item}) => {
     return (
         <div className={styles.PropertyComponent}>
-            <img src={item.image} alt='real-estate'/>
+            <Link to={`/property/${item._id}`}><img src={item.image} alt='real-estate'/></Link>
             <div className={styles.description}>
                 <div className={styles.features}>
                     {/* {

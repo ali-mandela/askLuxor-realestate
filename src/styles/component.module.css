@@ -5,8 +5,7 @@
     .firstDiv { 
         padding: 0 140px; 
         cursor: pointer;
-
-        display: flex;
+        display: flex; 
         background-color: transparent;
         position: absolute;
         top: -40px;

@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useRef, useState } from 'react';
 import style from '../styles/auth.module.css';
 import LayoutContainer from '../../components/Layout';
 import img from '../../assets/auth.svg';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
@@ -12,9 +13,10 @@ const RegisterPage = () => {
         email: '',
         Phone: '',
         password: '',
+        bio:'',
         Image: null,
         imagePreview: null 
-    });
+    }); 
     const navigate = useNavigate()
 
     const ref = useRef();
@@ -46,10 +48,12 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        const { name, email, Phone, password, Image } = formData;
+        const { name, email, Phone, password, Image,bio } = formData;
+
+        
     
         // Check if any required field is empty
-        if (!name || !email || !Phone || !password || !Image ) {
+        if (!name || !email || !Phone || !password || !Image || !bio ) {
             toast.error('Please fill in all fields.');
             return;
         }
@@ -65,6 +69,7 @@ const RegisterPage = () => {
                 email,
                 Phone,
                 password,
+                bio,
                 Image: imagePublicId 
             });
             const response =await res.data;
@@ -72,9 +77,17 @@ const RegisterPage = () => {
             if(response.success == true){
                 console.log(response);
                 toast(response.message);
-                localStorage.setItem('token', response.token);
+                localStorage.setItem('token', response.token); 
                 navigate('/agent/post-a-property')
-                setFormData({})
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    password: '',
+                    bio: '',
+                    Image: null,
+                    imagePreview: null
+                });
             }else{
                 toast(response.message)
             }
@@ -129,6 +142,16 @@ const RegisterPage = () => {
                                 required
                                 placeholder="Enter your email"
                                 value={formData.email}
+                                onChange={handleChange}/>
+                        </div>
+                        <div className={style.formGroup}>
+                            <textarea
+                                name="bio"
+                                type='text'
+                                required
+                                placeholder="About you"
+                                rows={10}
+                                value={formData.bio}
                                 onChange={handleChange}/>
                         </div>
                         <div className={style.formGroup}>

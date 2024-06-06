@@ -56,29 +56,17 @@ const Filter = ({isNav = false}) => {
                     For Rent
                 </p>
                 <p
-                    className={formData.type === 'Sell'
+                    className={formData.type === 'Buy'
                     ? styles.ac
                     : ''}
-                    onClick={() => dispatch(updateQuery({type: 'Sell'}))}>
-                    For Sale
+                    onClick={() => dispatch(updateQuery({type: 'Buy'}))}>
+                    For Buy
                 </p>
             </div>
 
             <div className={styles.secondDiv}>
                 <LayoutContainer>
                     <form >
-                        {/* <select name="purchaseType" onChange={handleChange} value={formData.purchaseType}>
-                            <option value="" >Purchase Type</option>
-                            <option value="sell">For Sale</option>
-                            <option value="buy">For Rent</option>
-                        </select> */}
-                        <select name="typee" onChange={handleChange} value={formData.type}>
-                            <option value="" >All Types</option>
-                            <option value="Townhouses">Townhouses</option>
-                            <option value="Duplexes">Duplexes</option>
-                            <option value="Quadplexes">Quadplexes</option>
-                            <option value="Condominiums">Condominiums</option>
-                        </select>
                         <input
                             type="text"
                             name="title"
@@ -92,18 +80,19 @@ const Filter = ({isNav = false}) => {
                             <option value="2">2</option>
                             <option value="3+">3+</option>
                         </select>
-                        <input
-                            type="text"
-                            name="address"
-                            placeholder="Address"
-                            onChange={handleChange}
-                            value={formData.address}/>
+                        
                         <select name="bathrooms" onChange={handleChange} value={formData.bathrooms}>
                             <option value="" disabled>Any Bathrooms</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3+">3+</option>
                         </select>
+                        <input
+                            type="text"
+                            name="address"
+                            placeholder="Address"
+                            onChange={handleChange}
+                            value={formData.address}/>
                         <select name="minPrice" onChange={handleChange} value={formData.minPrice}>
                             <option value="" >Min Price</option>
                             <option value="100">100</option>
@@ -120,7 +109,7 @@ const Filter = ({isNav = false}) => {
                         </select>
 
                     </form>
-                    <button onClick={handleSubmit} type="submit">Submit</button>
+                    <button onClick={handleSubmit} type="submit">Search Properties</button>
                 </LayoutContainer>
             </div>
         </div>

@@ -37,7 +37,9 @@ const handleDelete = useCallback(async (id) => {
           {data.map((item, index) => (
             <tr key={item._id}>
               <td>{index + 1}</td>
-              <td><Link to={`/agent/property/${item?._id}`}>{item.name}</Link></td>
+              {/* <td><Link to={`/agent/property/${item?._id}`}>{item.name}</Link></td>*/}
+               <td>  {item.name} </td> 
+              
               <td>
                 <img src={item.image} alt={item.name} className={style.Image} />
               </td>

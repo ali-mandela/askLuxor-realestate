@@ -1,93 +1,50 @@
-.agentContainer{ 
-    padding: 60px 0;
-
-    .agentTop{
-        text-align: center;
-        padding: 60px 0;
-
-        & h1{
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-    }
-
-    .agentBody{
-        padding: 30px 0;
-        display: flex; 
-        justify-content: space-between;
-        flex-wrap: wrap;  
-
-    }
-
-}
-@media (max-width: 700px) {
-    .agentContainer {
-         padding: 40px 0;
-
-         .agentTop{
-            padding: 10px 0;
-         }
-         .agentBody{
-            padding: 60px 0;flex-direction: column;
-            align-items: center;
-            gap: 80px;
-         }
-        }
-    
-}
-
 
 /* Agent Component */
 
-.agentComponent{ 
-        align-content: center;
-
-        
-    .imgContainer{
-        position: relative;
-
-        /* &::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: -30px;
-            width: 260px;
-            height: 240px;
-            border: solid 4px #91B029;
-            z-index: 0; 
-          }*/
-
-        &> div{
-            bottom: 30px;
-            height: 240px;
-            left: -30px;
-            width: 260px;
-            position: absolute; 
-            border: solid 4px #91B029; 
-            
-        } 
-
-        & img {
-            width: 260px;
-            height: 220px;
-            object-fit: cover;
-            z-index: +1111;
-
-        }
-
-       
-        
+.agentComponent {
+    align-content: center;
+    background-color: transparent;
+    /* border: solid 1px #333; */
+    padding: 20px;
+  
+    .imgContainer {
+      position: relative;
+  
+    
+  
+      & > div {  
+        position: absolute;
+        bottom: 20px;
+        height: 240px;
+        left: -30px;
+        width: 260px;
+        border: solid 8px #91B029;  
+        z-index: -1;  
+      }
+  
+      & img {
+        width: 260px;
+        height: 220px;
+        object-fit: cover;
+        z-index: 1;  
+      }
     }
-    .textContainer{
-        .name{
-            font-size: 1.5rem;
-            font-weight: 400;
+  
+    .textContainer {
+      .name {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+  
+      .list {
+        border-bottom: #7e7e7e solid 1px; 
+ 
+        & a {
+          color: #7e7e7e;
+          font-size: 1rem;
         }
-        .list{
-            & a{
-                color: #333;
-                font-size: 1.1rem;
-            }
-        }
+      }
     }
-}
+  }
+  
+ 

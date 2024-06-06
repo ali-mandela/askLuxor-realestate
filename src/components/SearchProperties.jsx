@@ -1,36 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import {  useState } from 'react';
 import styles from '../styles/Prop.module.css';
 import PropertyComponent from './PropertyComponent';
 import { useSelector } from 'react-redux';
+import { getItems } from '../utils/ApiRequest';
+import PaginationBtns from './utils/PaginationBtns';
 
-const PaginationBtns = ({ len, currentPage, onPageChange }) => {
-    const itemsPerPage = 6;
-    const totalPages = Math.ceil(len / itemsPerPage);
-
-    const renderPageButtons = () => {
-        let buttons = [];
-        for (let i = 1; i <= totalPages; i++) {
-            buttons.push(
-                <button
-                    key={i}
-                    onClick={() => onPageChange(i)}
-                    className={currentPage === i ? styles.active : ''}
-                >
-                    {i}
-                </button>
-            );
-        }
-        return buttons;
-    };
-
-    return (
-        <div className={styles.paginationContainer}>
-            {renderPageButtons()}
-        </div>
-    );
-};
-
+ 
 const SearchProperties = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
@@ -39,6 +15,10 @@ const SearchProperties = () => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+ 
+        getItems();
+
+     
 
     // Calculate the start and end indices of items to display
     const startIdx = (currentPage - 1) * itemsPerPage;
@@ -49,11 +29,14 @@ const SearchProperties = () => {
         <div className={styles.searchPropertiesContainer}>
             <h1>Properties</h1>
             <div className={styles.body}>
+            {
+                items.length == '0' && <p style={{color:"black"}}>Currenly, No property is live.</p> 
+            }
                 {currentItems.map((item, i) => 
                     <PropertyComponent key={i} item={item} />
                 )}
             </div>
-            <PaginationBtns len={items.length} currentPage={currentPage} onPageChange={handlePageChange} />
+            <PaginationBtns len={items.length} iPerPage={6} currentPage={currentPage} onPageChange={handlePageChange} />
         </div>
     );
 };

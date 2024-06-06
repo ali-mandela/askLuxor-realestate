@@ -115,10 +115,10 @@ const PostProperty = () => {
                         </div>
                         <div>  
                             <label>Rent:
-                                <input name='type' onChange={handleChange} type='radio' value='rent' checked={propertyData.type === 'rent'} />
+                                <input name='type' onChange={handleChange} type='radio' value='Rent' checked={propertyData.type === 'Rent'} />
                             </label>
-                            <label>Sell:
-                                <input name='type' onChange={handleChange} type='radio' value='sell' checked={propertyData.type === 'sell'} />
+                            <label>Buy:
+                                <input name='type' onChange={handleChange} type='radio' value='Buy' checked={propertyData.type === 'Buy'} />
                             </label>
                             <label>Parking Spot:
                                 <input name="parkingSpot" onChange={handleChange} type='checkbox' checked={propertyData.parkingSpot} />
@@ -136,7 +136,7 @@ const PostProperty = () => {
                             </label>
                         </div>
                         <div>
-                            <label>Price of Property:
+                            <label>Price of Property ₹ :
                                 <input name="price" onChange={handleChange} type='number' value={propertyData.price} placeholder='' />
                             </label>
                         </div>

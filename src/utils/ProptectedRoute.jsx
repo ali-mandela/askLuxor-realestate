@@ -1,49 +1,43 @@
 /* eslint-disable react/prop-types */
-import { useSelector } from 'react-redux'; 
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../Rdeux/userSlice';
-const ProtectedRoute = ({children}) =>{
+import { getUser } from './ApiRequest';
 
-    const {userDetails} = useSelector((sto)=> sto.user);
-    const dispatch = useDispatch();
+const ProtectedRoute = ({ children }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
+  useEffect(() => {
+    if (localStorage.getItem('token') && !user.userInfo) {
+      getUser(dispatch);
+    }
+  }, [dispatch, user.userInfo]);
 
-    const getUser = async () => {
-        try {
-          const { data } = await axios.get('/agent/get-user', {
-            headers: {
-              Authorization: localStorage.getItem('token'),
-            },
-          });
-    
-          if (data.success) {
-            dispatch(setUser(data?.data?.user)); 
-            // toast("getting data")
-          } else {
-            // toast.error(data.message);
-            <Navigate to="/login" />;
-          }
-        } catch (error) {
-        //   toast.error(error.message);
-          <Navigate to="/login" />;
-        }
-      };
-      
-      useEffect(() => {
-        if(userDetails===null)
-            getUser();
-      }, []);
-      
-      if (localStorage.getItem('token')) {
-        return children;
-      } else {
-        return <Navigate to="/login" />;
-      }
+  if (localStorage.getItem('token')) {
+    if (user.userInfo) {
+      return children;
+    } else {
+      return <div>Loading...</div>;
+    }
+  } else {
+    return <Navigate to="/login" />;
+  }
+};
 
-}
+const RoleBasedRedirect = ({ children }) => {
+  const user = useSelector((state) => state.user?.userInfo);
 
+  if (localStorage.getItem('token')) {
+    if (user?.role === 'USER') {
+      return <Navigate to="/agent/post-a-property" />;
+    } else if (user?.role === 'ADMIN') {
+      return <Navigate to="/agent/admin/dashboard" />;
+    }
+  }
 
-export default ProtectedRoute
+  return children;
+};
+
+export default ProtectedRoute;
+export { RoleBasedRedirect };

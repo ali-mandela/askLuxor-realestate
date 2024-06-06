@@ -16,6 +16,9 @@ import ProfilePage from './pages/agent/ProfilePage';
 import AdminDashBoard from './pages/Admin/AdminDashBoard';
 import Axios from "axios";
 import SingleProperty from './agent/pages/SingleProperty';
+import Property from './pages/Property';
+import AgentSinglePage from './pages/agent/AgentSinglePage'; 
+import ProtectedRoute, { RoleBasedRedirect } from './utils/ProptectedRoute';
 
 Axios.defaults.baseURL = 'http://localhost:8080/api/'
 
@@ -29,21 +32,23 @@ function App() {
           <Route path="/" element={<HomePage />} />
           
           <Route path="/agents" element={<AgentsPage />} />
+          <Route path="/agents/:id" element={<AgentSinglePage />} />
           <Route path="/property" element={<PropertyPage />} />
+          <Route path="/property/:id" element={<Property />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Route>
 
         {/* Agent Layout Routes */}
         <Route path="/agent" element={<AgentLayout />}>
-        <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="post-a-property" element={<PostProperty />} />
-          <Route path="property/:id" element={<SingleProperty />} />
-          <Route path="my-properties" element={<MyProerties />} />
-          <Route path="dashboard" element={<LoginPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="admin/dashboard" element={<AdminDashBoard />} />
+        <Route path="login" element={<RoleBasedRedirect><LoginPage /></RoleBasedRedirect>} />
+          <Route path="register" element={<RoleBasedRedirect><RegisterPage /></RoleBasedRedirect>} /> 
+          <Route path="post-a-property" element={<ProtectedRoute><PostProperty /></ProtectedRoute>} />
+          <Route path="property/:id" element={<ProtectedRoute>  <SingleProperty />  </ProtectedRoute>} />
+          <Route path="my-properties" element={<ProtectedRoute><MyProerties /></ProtectedRoute>} /> 
+          <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="admin/dashboard" element={<ProtectedRoute><AdminDashBoard /></ProtectedRoute>} />
+         
         </Route>
       </Routes>
         </>
